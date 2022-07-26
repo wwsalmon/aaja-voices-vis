@@ -1,21 +1,25 @@
-const width = 800;
+const width = 700;
 const yearWidth = 64;
-const numCirclesPerRow = 12;
+const numCirclesPerRow = 9;
 const circlePadding = 8;
 const lineWidth = 4;
+const lineHeight = 48;
 
 const circleWidth = (width - yearWidth) / numCirclesPerRow;
 const circleRadius = (circleWidth / 2) - circlePadding;
 
-const svg = d3
-    .select("svg")
-    .attr("viewBox", `0 0 ${width} ${width * 2}`)
-    .style("width", "100%")
-    .style("max-width", "800px");
-
 
 
 d3.json("pulitzers.json").then(data => {
+    const height = circleWidth * (Math.floor(data.length / numCirclesPerRow)) + 2 * circleRadius + lineHeight;
+
+    const svg = d3
+        .select("svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .style("width", "100%")
+        .style("max-width", "800px")
+        .style("display", "block");
+
     console.log(data);
 
     const tooltip = d3.select("body")
@@ -57,7 +61,7 @@ d3.json("pulitzers.json").then(data => {
                     .attr("x", circleWidth * (i % numCirclesPerRow) + circleRadius - lineWidth / 2)
                     .attr("y", circleWidth * (Math.floor(i / numCirclesPerRow)) + 2 * circleRadius)
                     .attr("width", lineWidth)
-                    .attr("height", 24)
+                    .attr("height", lineHeight)
                     .attr("fill", "red");
 
                 return "red";
@@ -68,10 +72,7 @@ d3.json("pulitzers.json").then(data => {
         .attr("cx", (d, i) => circleWidth * (i % numCirclesPerRow) + circleRadius)
         .attr("cy", (d, i) => circleWidth * (Math.floor(i / numCirclesPerRow)) + circleRadius)
         .on("mouseover", function(event, d) {
-
             d3.select(this).attr("fill", "gray");
-
-            console.log(event.pageX, window.innerWidth - 200);
 
             tooltip
                 .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
@@ -84,8 +85,8 @@ d3.json("pulitzers.json").then(data => {
                 .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
                 .style("top", event.pageY + 8 + "px");
         })
-        .on("mouseout", function() {
-            d3.select(this).attr("fill", "black");
+        .on("mouseout", function(e, d) {
+            d3.select(this).attr("fill", d.name === "Viet Thanh Nguyen" ? "red" : "black");
             tooltip.style("display", "none");
         });
 }).catch(e => {

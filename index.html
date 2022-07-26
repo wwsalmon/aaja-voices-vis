@@ -5,13 +5,32 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>test</title>
     <script src="/d3.min.js"></script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
 </head>
 <body>
-    <div style="width: 100%; max-width: 800px; margin: 0 auto;">
-        <p style="font-size: 48px; margin-left: 64px;">The Pulitzer Prizes have had 183 board members since its creation in 1916.</p>
+    <div style="width: 100%; max-width: 700px; margin: 0 auto;">
+        <div style="margin-left: 64px; margin-bottom: 32px;">
+            <p style="font-size: 48px; font-weight: 300">The Pulitzer Prize has had 178 board members since its creation in 1916.</p>
+            <p>Hover over circle to see name</p>
+        </div>
         <svg id="pulitzer"></svg>
+        <div style="max-width: 320px; padding: 16px; background-color: red; display: flex; align-items: center; border-radius: 8px; margin: 0 auto; color: white">
+            <img src="/vtn.jpeg" alt="Photo of Viet Thanh Nguyen" style="width: 96px; height: 96px; border-radius: 50%; margin-right: 16px">
+            <div>
+                <p style="font-weight: 700; font-size: 20px; margin: 0">Viet Thanh Nguyen</p>
+                <p style="margin: 8px 0 0 0">Elected 2021</p>
+            </div>
+        </div>
+        <p style="margin-left: 64px; font-size: 48px; color: red; font-weight: 700;">Only one voting member is Asian American.</p>
     </div>
     <script src="/index.js"></script>
 </body>
