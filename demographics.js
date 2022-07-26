@@ -73,7 +73,7 @@ function render(highlight, boxPercent) {
             .attr("y", (d, i) => Math.floor(i / squaresPerRow) * (singleWidth / squaresPerRow) + labelHeight)
             .attr("fill", d => highlight.includes(d.name) ? "#0062F1" : "#bbb")
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("fill", "gray");
+                d3.select(this).attr("fill", highlight.includes(d.name) ? "#00378b" : "gray");
 
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
