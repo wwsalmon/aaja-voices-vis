@@ -30,7 +30,18 @@ function render(highlight, boxPercent) {
             .style("background-color", "white")
             .style("padding", "8px")
             .style("border", "1px solid black")
-            .style("display", "none");
+            .style("display", "none")
+            .style("max-width", "200px");
+
+        const tooltipName = tooltip.append("div").style("margin", "10px 0");
+        tooltipName.append("span").text("Name: ").style("font-weight", 700);
+        const tooltipNameInner = tooltipName.append("span");
+        const tooltipTitle = tooltip.append("div").style("margin", "10px 0");
+        tooltipTitle.append("span").text("Title: ").style("font-weight", 700);
+        const tooltipTitleInner = tooltipTitle.append("span");
+        const tooltipOrg = tooltip.append("div").style("margin", "10px 0");
+        tooltipOrg.append("span").text("Occupation: ").style("font-weight", 700);
+        const tooltipOrgInner = tooltipOrg.append("span");
 
         const containers = svg
             .attr("viewBox", `0 0 ${width} 300`)
@@ -67,8 +78,19 @@ function render(highlight, boxPercent) {
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
                     .style("top", event.pageY + 8 + "px")
-                    .style("display", "block")
-                    .text(d.name + ((d.title || d.organization) && ` | ${d.title && `${d.title}, `}${d.organization}`));
+                    .style("display", "block");
+
+                if (d.title) {
+                    tooltipTitle.style("display", "block");
+                    tooltipTitleInner.text(d.title);
+                }
+
+                if (d.organization) {
+                    tooltipOrg.style("display", "block");
+                    tooltipOrgInner.text(d.organization);
+                }
+
+                tooltipNameInner.text(d.name);
             })
             .on("mousemove", function(event) {
                 tooltip
@@ -78,7 +100,10 @@ function render(highlight, boxPercent) {
             .on("mouseout", function(e, d) {
                 d3.select(this).attr("fill", highlight.includes(d.name) ? "#0062F1" : "#bbb");
                 tooltip.style("display", "none");
-            });;
+
+                tooltipTitle.style("display", "none");
+                tooltipOrg.style("display", "none");
+            });
 
         containers.append("rect")
             .attr("width", d => boxPercent * data.filter(x => x.award === d).length * singleWidth / squaresPerRow)
