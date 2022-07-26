@@ -1,0 +1,404 @@
+[
+  {
+    "name": "Raney Aronson-Rath",
+    "award": "Livingston",
+    "title": "Executive Producer",
+    "organization": "Frontline, PBS"
+  },
+  {
+    "name": "Ken Auletta",
+    "award": "Livingston",
+    "title": "Author, Media and Communications Writer",
+    "organization": "The New Yorker"
+  },
+  {
+    "name": "John F. Harris",
+    "award": "Livingston",
+    "title": "Co-Founder",
+    "organization": "Politico"
+  },
+  {
+    "name": "Matt Murray",
+    "award": "Livingston",
+    "title": "Editor in Chief",
+    "organization": "The Wall Street Journal"
+  },
+  {
+    "name": "Clarence Page",
+    "award": "Livingston",
+    "title": "Columnist and Editorial Board Member",
+    "organization": "Chicago Tribune"
+  },
+  {
+    "name": "Lydia Polgreen",
+    "award": "Livingston",
+    "title": "Head of Content",
+    "organization": "Gimlet"
+  },
+  {
+    "name": "Anna Quindlen",
+    "award": "Livingston",
+    "title": "Author",
+    "organization": ""
+  },
+  {
+    "name": "María Elena Salinas",
+    "award": "Livingston",
+    "title": "Contributor",
+    "organization": "ABC News"
+  },
+  {
+    "name": "Bret Stephens",
+    "award": "Livingston",
+    "title": "Op-Ed Columnist",
+    "organization": "The New York Times"
+  },
+  {
+    "name": "Kara Swisher",
+    "award": "Livingston",
+    "title": "Co-Executive Producer, Code Conference and Co-Founder",
+    "organization": "Recode"
+  },
+  {
+    "name": "Monica Pearson (Chair)",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Lorraine Ali",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Dr. Manuel Betancourt",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Vanessa K. De Luca",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Hannah Giorgis",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Dr. Herman Gray",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Karen Hall",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Dr. Dana A. Heller",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Michael Isip",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Simon Kilmurry",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Wonya Lucas",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Mike Monello",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Dr. Aswin Punathambekar",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Nicholas Quah",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Kent Rees",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Mark Ruffin",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "John Seigenthaler",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Kathy Im",
+    "award": "Peabody",
+    "title": "",
+    "organization": ""
+  },
+  {
+    "name": "Stephen Adler",
+    "award": "Loeb",
+    "title": "Former President and Editor-in-Chief",
+    "organization": "Reuters"
+  },
+  {
+    "name": "Geeta Anand",
+    "award": "Loeb",
+    "title": "Dean, School of Journalism",
+    "organization": "University of California Berkeley"
+  },
+  {
+    "name": "Gerard Baker",
+    "award": "Loeb",
+    "title": "Editor-at-Large",
+    "organization": "The Wall Street Journal"
+  },
+  {
+    "name": "Nancy Barnes",
+    "award": "Loeb",
+    "title": "Senior Vice President for News & Editorial Director",
+    "organization": "NPR"
+  },
+  {
+    "name": "Antonio Bernardo",
+    "award": "Loeb",
+    "title": "Dean, Anderson School of Management",
+    "organization": "University of California Los Angeles"
+  },
+  {
+    "name": "Rebecca Blumenstein",
+    "award": "Loeb",
+    "title": "Deputy Managing Editor",
+    "organization": "The New York Times"
+  },
+  {
+    "name": "Sally Buzbee",
+    "award": "Loeb",
+    "title": "Executive Editor",
+    "organization": "The Washington Post"
+  },
+  {
+    "name": "David Callaway",
+    "award": "Loeb",
+    "title": "Former Chief Executive Officer & Editor Emeritus",
+    "organization": "TheStreet"
+  },
+  {
+    "name": "Kevin Delaney",
+    "award": "Loeb",
+    "title": "Co-founder & Editor-in-Chief",
+    "organization": "Charter"
+  },
+  {
+    "name": "Manny Garcia",
+    "award": "Loeb",
+    "title": "Editor",
+    "organization": "Austin American-Statesman"
+  },
+  {
+    "name": "Susan Goldberg",
+    "award": "Loeb",
+    "title": "Editor in Chief",
+    "organization": "National Geographic"
+  },
+  {
+    "name": "Stacy-Marie Ishmael",
+    "award": "Loeb",
+    "title": "Co-host Slate Money",
+    "organization": ""
+  },
+  {
+    "name": "Jessica Lessin",
+    "award": "Loeb",
+    "title": "Founder & Editor-in-Chief",
+    "organization": "The Information"
+  },
+  {
+    "name": "Joanne Lipman",
+    "award": "Loeb",
+    "title": "",
+    "organization": "Yale University"
+  },
+  {
+    "name": "Alan Murray",
+    "award": "Loeb",
+    "title": "Editor",
+    "organization": "Fortune Chief Content Officer"
+  },
+  {
+    "name": "Becky Quick",
+    "award": "Loeb",
+    "title": "“Squawk Box” Co-Anchor",
+    "organization": "CNBC"
+  },
+  {
+    "name": "Andy Serwer",
+    "award": "Loeb",
+    "title": "Editor-in-Chief",
+    "organization": "Yahoo Finance"
+  },
+  {
+    "name": "Gillian Tett",
+    "award": "Loeb",
+    "title": "Chairman Editorial Board & Editor-at-Large",
+    "organization": "US"
+  },
+  {
+    "name": "Vijay Vaitheeswaran",
+    "award": "Loeb",
+    "title": "Global Energy and Climate Innovation Editor",
+    "organization": "The Economist"
+  },
+  {
+    "name": "Matthew Winkler",
+    "award": "Loeb",
+    "title": "Editor-in-Chief Emeritus and Founder",
+    "organization": "Bloomberg News"
+  },
+  {
+    "name": "Steve Coll",
+    "award": "Pulitzer",
+    "title": "Dean",
+    "organization": "Graduate School of Journalism, Columbia University"
+  },
+  {
+    "name": "Gail Collins",
+    "award": "Pulitzer",
+    "title": "Opinion Columnist",
+    "organization": "The New York Times"
+  },
+  {
+    "name": "Nicole Carroll",
+    "award": "Pulitzer",
+    "title": "Editor in Chief",
+    "organization": "USA Today"
+  },
+  {
+    "name": "Carlos Lozada",
+    "award": "Pulitzer",
+    "title": "Associate Editor and Nonfiction Book Critic",
+    "organization": "The Washington Post"
+  },
+  {
+    "name": "David Remnick",
+    "award": "Pulitzer",
+    "title": "Editor and Staff Writer",
+    "organization": "The New Yorker"
+  },
+  {
+    "name": "Kelly Lytle Hernandez",
+    "award": "Pulitzer",
+    "title": "Professor of History, African American Studies & Urban Planning and Thomas E. Lifka Chair of History",
+    "organization": "University of California, Los Angeles"
+  },
+  {
+    "name": "Kevin Merida",
+    "award": "Pulitzer",
+    "title": "Executive Editor",
+    "organization": "Los Angeles Times"
+  },
+  {
+    "name": "Viet Thanh Nguyen",
+    "award": "Pulitzer",
+    "title": "University Professor, Aerol Arnold Chair of English and Professor of English, American Studies and Ethnicity and Comparative Literature",
+    "organization": "University of Southern California"
+  },
+  {
+    "name": "Anne Applebaum",
+    "award": "Pulitzer",
+    "title": "author and Staff Writer",
+    "organization": "The Atlantic"
+  },
+  {
+    "name": "Gabriel Escobar",
+    "award": "Pulitzer",
+    "title": "Editor and Senior Vice President",
+    "organization": "The Philadelphia Inquirer"
+  },
+  {
+    "name": "Marjorie Miller",
+    "award": "Pulitzer",
+    "title": "Administrator",
+    "organization": "The Pulitzer Prizes, Columbia University"
+  },
+  {
+    "name": "Lee C. Bollinger",
+    "award": "Pulitzer",
+    "title": "President",
+    "organization": "Columbia University"
+  },
+  {
+    "name": "Katherine Boo",
+    "award": "Pulitzer",
+    "title": "Contributing Editor",
+    "organization": "The New Yorker"
+  },
+  {
+    "name": "John Daniszewski",
+    "award": "Pulitzer",
+    "title": "Vice President and Editor at Large for Standards",
+    "organization": "Associated Press"
+  },
+  {
+    "name": "Neil Brown",
+    "award": "Pulitzer",
+    "title": "President",
+    "organization": "Poynter Institute for Media Studies"
+  },
+  {
+    "name": "Tommie Shelby",
+    "award": "Pulitzer",
+    "title": "Caldwell Titcomb Professor of African and African American Studies and of Philosophy",
+    "organization": "Harvard University"
+  },
+  {
+    "name": "Elizabeth Alexander",
+    "award": "Pulitzer",
+    "title": "President",
+    "organization": "Andrew W. Mellon Foundation"
+  },
+  {
+    "name": "Emily Ramshaw",
+    "award": "Pulitzer",
+    "title": "Co-Founder and CEO",
+    "organization": "The 19th"
+  },
+  {
+    "name": "Nancy Barnes",
+    "award": "Pulitzer",
+    "title": "Senior Vice President of News and Editorial Director",
+    "organization": "National Public Radio"
+  }
+]
