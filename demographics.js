@@ -5,6 +5,8 @@ const squaresPerRow = 5;
 const squareMargin = 4;
 const squareWidth = singleWidth / squaresPerRow - squareMargin;
 const labelHeight = 48;
+const legendSquareWidth = 16;
+const legendMargin = 8;
 
 const labels = {
     "Pulitzer": "Pulitzer Prize",
@@ -20,7 +22,7 @@ const judgeType = {
     "Loeb": "Final judge",
 }
 
-function render(highlight, boxPercent) {
+function render(highlight, boxPercent, label) {
     const svg = d3.select("svg");
 
     d3.json("https://wwsalmon.github.io/aaja-voices-vis/judges.json").then(data => {
@@ -50,7 +52,7 @@ function render(highlight, boxPercent) {
             .data(Object.keys(labels))
             .enter()
             .append("g")
-            .style("transform", (d, i) => `translateX(${margin + i * (singleWidth + margin)}px)`);
+            .style("transform", (d, i) => `translate(${margin + i * (singleWidth + margin)}px, 96px)`);
 
         containers.append("text")
             .attr("dominant-baseline", "hanging")
@@ -116,20 +118,41 @@ function render(highlight, boxPercent) {
             .attr("rx", 4)
             .attr("pointer-events", "none");
 
-        svg.append("rect")
-            .attr("width", squareWidth - 2)
-            .attr("height", squareWidth - 2)
+        const legend = svg.append("g")
+            .style("transform", "translateY(4px)");
+
+        const legendProportional = legend.append("g").style("transform", `translateY(28px)`);
+
+        legendProportional.append("rect")
+            .attr("width", legendSquareWidth)
+            .attr("height", legendSquareWidth)
             .attr("stroke", "#222")
             .attr("stroke-width", 3)
             .attr("fill", "transparent")
             .attr("rx", 4)
-            .attr("x", margin)
-            .attr("y", 216);
+            .attr("x", margin);
 
-        svg.append("text")
+        legendProportional.append("text")
             .text(`If proportional to US population (${d3.format(".0%")(boxPercent)})`)
+            .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", margin + squareWidth + 16)
-            .attr("y", 216 + (squareWidth - 2) / 2);
+            .attr("x", margin + squareWidth + legendMargin)
+            .attr("y", (legendSquareWidth) / 2);
+
+        const legendHighlight = legend.append("g");
+
+        legendHighlight.append("rect")
+            .attr("width", legendSquareWidth)
+            .attr("height", legendSquareWidth)
+            .attr("fill", "#0062F1")
+            .attr("rx", 4)
+            .attr("x", margin);
+
+        legendHighlight.append("text")
+            .text(label)
+            .style("opacity", 0.5)
+            .attr("dominant-baseline", "middle")
+            .attr("x", margin + squareWidth + legendMargin)
+            .attr("y", (legendSquareWidth) / 2);
     });
 }

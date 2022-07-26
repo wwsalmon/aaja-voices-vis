@@ -15,3 +15,7 @@ h1 {
 body {
     font-family: "Inter", sans-serif;
 }
+
+.demographics-heading {
+    margin-left: 24px; margin-bottom: 32px;
+}
