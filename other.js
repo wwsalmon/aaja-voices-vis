@@ -85,20 +85,19 @@ function render(highlight, boxPercent) {
             .attr("height", squareWidth + 2)
             .attr("x", -1)
             .attr("y", labelHeight - 1)
-            .attr("stroke", "#a13b58")
-            .style("opacity", 0.5)
-            // .attr("stroke-dasharray", "3 3")
+            .attr("stroke", "#222")
             .attr("stroke-width", 3)
             .attr("fill", "transparent")
+            .attr("rx", 4)
             .attr("pointer-events", "none");
 
         svg.append("rect")
             .attr("width", squareWidth - 2)
             .attr("height", squareWidth - 2)
-            .attr("stroke", "#a13b58")
-            .style("opacity", 0.5)
+            .attr("stroke", "#222")
             .attr("stroke-width", 3)
             .attr("fill", "transparent")
+            .attr("rx", 4)
             .attr("x", margin)
             .attr("y", 216);
 
