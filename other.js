@@ -23,7 +23,7 @@ const judgeType = {
 function render(highlight, boxPercent) {
     const svg = d3.select("svg");
 
-    d3.json("./judges.json").then(data => {
+    d3.json("https://wwsalmon.github.io/aaja-voices-vis/judges.json").then(data => {
         const tooltip = d3.select("body")
             .append("div")
             .style("position", "absolute")

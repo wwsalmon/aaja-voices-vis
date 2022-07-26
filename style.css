@@ -1,0 +1,17 @@
+.container {
+    width: 100%; max-width: 700px; margin: 0 auto;
+}
+
+.container-wide {
+    width: 100%; max-width: 800px; margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
