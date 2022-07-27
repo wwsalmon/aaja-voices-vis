@@ -8,6 +8,23 @@ const labelHeight = 48;
 const legendSquareWidth = 16;
 const legendMargin = 8;
 
+const demoLabels = {
+    "asian": "Asian American",
+    "hispaniclatino": "Hispanic or Latino",
+    "black": "Black",
+    "nativeamer": "Native American",
+    "mena": "Middle Eastern or North African",
+};
+
+const demoPercentages = {
+    "asian": 0.061,
+    "black": 0.136,
+    "hispaniclatino": 0.189,
+    "white": 0.593,
+}
+
+const pocPercentage = 1 - demoPercentages["white"];
+
 const labels = {
     "Pulitzer": "Pulitzer Prize",
     "Peabody": "Peabody Awards",
@@ -17,15 +34,15 @@ const labels = {
 
 const judgeType = {
     "Pulitzer": "Board member",
-    "Peabody": "Judge",
+    "Peabody": "Board of jurors",
     "Livingston": "National judge",
     "Loeb": "Final judge",
 }
 
-function render(highlight, boxPercent, label) {
+function render(label) {
     const svg = d3.select("svg");
 
-    d3.json("https://wwsalmon.github.io/aaja-voices-vis/judges.json").then(data => {
+    d3.csv("../judges.csv").then(data => {
         const tooltip = d3.select("body")
             .append("div")
             .style("position", "absolute")
@@ -66,7 +83,7 @@ function render(highlight, boxPercent, label) {
             .text(d => judgeType[d]);
 
         containers.selectAll("rect.judge")
-            .data(d => data.filter(x => x.award === d).sort((a, b) => +highlight.includes(b.name) - +highlight.includes(a.name)))
+            .data(d => data.filter(x => x.award === d).sort((a, b) => +b[label] - +a[label]))
             .enter()
             .append("rect")
             .attr("width", squareWidth)
@@ -74,10 +91,10 @@ function render(highlight, boxPercent, label) {
             .attr("rx", 4)
             .attr("x", (d, i) => (i % squaresPerRow) * singleWidth / squaresPerRow)
             .attr("y", (d, i) => Math.floor(i / squaresPerRow) * (singleWidth / squaresPerRow) + labelHeight)
-            .attr("fill", d => highlight.includes(d.name) ? "#0062F1" : "#bbb")
+            .attr("fill", d => !!d[label] ? "#0062F1" : "#bbb")
             .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("fill", highlight.includes(d.name) ? "#00378b" : "gray");
+                d3.select(this).attr("fill", !!d[label] ? "#00378b" : "gray");
 
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
@@ -102,7 +119,7 @@ function render(highlight, boxPercent, label) {
                     .style("top", event.pageY + 8 + "px");
             })
             .on("mouseout", function(e, d) {
-                d3.select(this).attr("fill", highlight.includes(d.name) ? "#0062F1" : "#bbb");
+                d3.select(this).attr("fill", !!d[label] ? "#0062F1" : "#bbb");
                 tooltip.style("display", "none");
 
                 tooltipTitle.style("display", "none");
@@ -110,7 +127,7 @@ function render(highlight, boxPercent, label) {
             });
 
         containers.append("rect")
-            .attr("width", d => boxPercent * data.filter(x => x.award === d).length * singleWidth / squaresPerRow)
+            .attr("width", d => demoPercentages[label] * data.filter(x => x.award === d).length * singleWidth / squaresPerRow)
             .attr("height", squareWidth + 2)
             .attr("x", -1)
             .attr("y", labelHeight - 1)
@@ -136,7 +153,7 @@ function render(highlight, boxPercent, label) {
             .attr("x", margin + 0.75);
 
         legendProportional.append("text")
-            .text(`If proportional to US population (${d3.format(".0%")(boxPercent)})`)
+            .text(`If proportional to US population (${d3.format(".0%")(demoPercentages[label])})`)
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
             .attr("x", margin + squareWidth + legendMargin)
@@ -152,7 +169,7 @@ function render(highlight, boxPercent, label) {
             .attr("x", margin);
 
         legendHighlight.append("text")
-            .text(label)
+            .text(demoLabels[label])
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
             .attr("x", margin + squareWidth + legendMargin)
