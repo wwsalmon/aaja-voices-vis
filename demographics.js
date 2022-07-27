@@ -62,6 +62,9 @@ function render(label) {
         const tooltipOrg = tooltip.append("div").style("margin", "10px 0");
         tooltipOrg.append("span").text("Organization: ").style("font-weight", 700);
         const tooltipOrgInner = tooltipOrg.append("span");
+        const tooltipRace = tooltip.append("div").style("margin", "10px 0");
+        tooltipRace.append("span").text("Race/ethnicity: ").style("font-weight", 700);
+        const tooltipRaceInner = tooltipRace.append("span");
 
         const containers = svg
             .attr("viewBox", `0 0 ${width} 300`)
@@ -83,7 +86,7 @@ function render(label) {
             .text(d => judgeType[d]);
 
         containers.selectAll("rect.judge")
-            .data(d => data.filter(x => x.award === d).sort((a, b) => +b[label] - +a[label]))
+            .data(d => data.filter(x => x.award === d).sort((a, b) => +(b.responded || !!b.source) - +(a.responded || !!a.source)).sort((a, b) => +b[label] - +a[label]))
             .enter()
             .append("rect")
             .attr("width", squareWidth)
@@ -91,7 +94,7 @@ function render(label) {
             .attr("rx", 4)
             .attr("x", (d, i) => (i % squaresPerRow) * singleWidth / squaresPerRow)
             .attr("y", (d, i) => Math.floor(i / squaresPerRow) * (singleWidth / squaresPerRow) + labelHeight)
-            .attr("fill", d => !!d[label] ? "#0062F1" : "#bbb")
+            .attr("fill", d => !!d[label] ? "#0062F1" : (d.responded || d.source) ? "#bbb" : "#dac6c6")
             .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", !!d[label] ? "#00378b" : "gray");
@@ -112,6 +115,18 @@ function render(label) {
                 }
 
                 tooltipNameInner.text(d.name);
+
+                if (!d.responded && !d.source) {
+                    tooltipRaceInner.text(`Unknown (${d.declined ? "declined to respond" : "did not respond"})`);
+                } else {
+                    let races = [];
+                    for (let label of Object.keys(demoLabels)) {
+                        if (d[label]) races.push(demoLabels[label]);
+                    }
+                    if (!races.length) races.push("White");
+                    let raceText = races.join(", ");
+                    tooltipRaceInner.text(races.join(", "));
+                }
             })
             .on("mousemove", function(event) {
                 tooltip
@@ -119,7 +134,7 @@ function render(label) {
                     .style("top", event.pageY + 8 + "px");
             })
             .on("mouseout", function(e, d) {
-                d3.select(this).attr("fill", !!d[label] ? "#0062F1" : "#bbb");
+                d3.select(this).attr("fill", !!d[label] ? "#0062F1" : (d.responded || d.source) ? "#bbb" : "#dac6c6");
                 tooltip.style("display", "none");
 
                 tooltipTitle.style("display", "none");
