@@ -33,7 +33,8 @@ function render(highlight, boxPercent, label) {
             .style("padding", "8px")
             .style("border", "1px solid black")
             .style("display", "none")
-            .style("max-width", "200px");
+            .style("max-width", "200px")
+            .style("line-height", "1.5");
 
         const tooltipName = tooltip.append("div").style("margin", "10px 0");
         tooltipName.append("span").text("Name: ").style("font-weight", 700);
@@ -42,7 +43,7 @@ function render(highlight, boxPercent, label) {
         tooltipTitle.append("span").text("Title: ").style("font-weight", 700);
         const tooltipTitleInner = tooltipTitle.append("span");
         const tooltipOrg = tooltip.append("div").style("margin", "10px 0");
-        tooltipOrg.append("span").text("Occupation: ").style("font-weight", 700);
+        tooltipOrg.append("span").text("Organization: ").style("font-weight", 700);
         const tooltipOrgInner = tooltipOrg.append("span");
 
         const containers = svg
@@ -74,6 +75,7 @@ function render(highlight, boxPercent, label) {
             .attr("x", (d, i) => (i % squaresPerRow) * singleWidth / squaresPerRow)
             .attr("y", (d, i) => Math.floor(i / squaresPerRow) * (singleWidth / squaresPerRow) + labelHeight)
             .attr("fill", d => highlight.includes(d.name) ? "#0062F1" : "#bbb")
+            .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", highlight.includes(d.name) ? "#00378b" : "gray");
 
@@ -124,13 +126,14 @@ function render(highlight, boxPercent, label) {
         const legendProportional = legend.append("g").style("transform", `translateY(28px)`);
 
         legendProportional.append("rect")
-            .attr("width", legendSquareWidth)
-            .attr("height", legendSquareWidth)
+            .attr("width", legendSquareWidth - 1.5)
+            .attr("height", legendSquareWidth - 1.5)
             .attr("stroke", "#222")
             .attr("stroke-width", 3)
+            .attr("stroke-alignment", "inner")
             .attr("fill", "transparent")
             .attr("rx", 4)
-            .attr("x", margin);
+            .attr("x", margin + 0.75);
 
         legendProportional.append("text")
             .text(`If proportional to US population (${d3.format(".0%")(boxPercent)})`)
