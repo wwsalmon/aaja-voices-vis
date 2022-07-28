@@ -205,7 +205,7 @@ function render(label) {
             .attr("x", margin);
 
         legendHighlight.append("text")
-            .text(demoLabels[label])
+            .text(demoLabels[label] + " judge")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
             .attr("x", margin + squareWidth + legendMargin)
