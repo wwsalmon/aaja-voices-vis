@@ -6,7 +6,8 @@ const squareMargin = 4;
 const squareWidth = singleWidth / squaresPerRow - squareMargin;
 const labelHeight = 48;
 const legendSquareWidth = 16;
-const legendMargin = 12;
+const legendSquareMargin = 5;
+const legendMargin = 32;
 
 const demoLabels = {
     "asian": "Asian American",
@@ -208,10 +209,10 @@ function render(label) {
             .text(demoLabels[label] + " judge")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", legendSquareWidth + legendMargin)
-            .attr("y", (legendSquareWidth) / 2);
+            .attr("x", legendSquareWidth + legendSquareMargin)
+            .attr("y", (legendSquareWidth) / 2 + 1);
 
-        const legendDefault = legend.append("g").style("transform", `translateX(${margin + legendHighlight.node().getBBox().width}px)`);
+        const legendDefault = legend.append("g").style("transform", `translateX(${legendMargin + legendHighlight.node().getBBox().width}px)`);
 
         legendDefault.append("rect")
             .attr("width", legendSquareWidth)
@@ -223,10 +224,10 @@ function render(label) {
             .text("Other race/ethnicity")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", legendSquareWidth + legendMargin)
-            .attr("y", (legendSquareWidth) / 2);
+            .attr("x", legendSquareWidth + legendSquareMargin)
+            .attr("y", (legendSquareWidth) / 2 + 1);
 
-        const legendUnknown = legend.append("g").style("transform", `translateX(${2 * margin + legendDefault.node().getBBox().width + legendHighlight.node().getBBox().width}px)`);
+        const legendUnknown = legend.append("g").style("transform", `translateX(${2 * legendMargin + legendDefault.node().getBBox().width + legendHighlight.node().getBBox().width}px)`);
 
         legendUnknown.append("rect")
             .attr("width", legendSquareWidth)
@@ -238,7 +239,7 @@ function render(label) {
             .text("Unknown race/ethnicity")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", legendSquareWidth + legendMargin)
-            .attr("y", (legendSquareWidth) / 2);
+            .attr("x", legendSquareWidth + legendSquareMargin)
+            .attr("y", (legendSquareWidth) / 2 + 1);
     });
 }
