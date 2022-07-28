@@ -83,7 +83,7 @@ function render(label) {
         const tooltipRaceInner = tooltipRace.append("span");
 
         const containers = svg
-            .attr("viewBox", `0 0 ${width} 300`)
+            .attr("viewBox", `0 0 ${width} 400`)
             .style("width", "100%")
             .selectAll("g.awardContainer")
             .data(Object.keys(labels))
@@ -115,10 +115,7 @@ function render(label) {
             .on("mouseover", function(event, d) {
                 d3.select(this).style("opacity", 0.5);
 
-                tooltip
-                    .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
-                    .style("top", event.pageY + 8 + "px")
-                    .style("display", "block");
+                tooltip.style("display", "block");
 
                 if (d.title) {
                     tooltipTitle.style("display", "block");
@@ -143,11 +140,19 @@ function render(label) {
                     let raceText = races.join(", ");
                     tooltipRaceInner.text(races.join(", "));
                 }
-            })
-            .on("mousemove", function(event) {
+
+                const tooltipHeight = tooltip.node().offsetHeight;
+
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
-                    .style("top", event.pageY + 8 + "px");
+                    .style("top", Math.min(event.pageY + 8, window.innerHeight - tooltipHeight) + "px");
+            })
+            .on("mousemove", function(event) {
+                const tooltipHeight = tooltip.node().offsetHeight;
+
+                tooltip
+                    .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
+                    .style("top", Math.min(event.pageY + 8, window.innerHeight - tooltipHeight) + "px");
             })
             .on("mouseout", function(e, d) {
                 d3.select(this).style("opacity", 1)
