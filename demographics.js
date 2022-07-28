@@ -6,7 +6,7 @@ const squareMargin = 4;
 const squareWidth = singleWidth / squaresPerRow - squareMargin;
 const labelHeight = 48;
 const legendSquareWidth = 16;
-const legendMargin = 4;
+const legendMargin = 12;
 
 const demoLabels = {
     "asian": "Asian American",
@@ -174,7 +174,7 @@ function render(label) {
         //     .attr("pointer-events", "none");
 
         const legend = svg.append("g")
-            .style("transform", "translateY(4px)");
+            .style("transform", `translate(${margin}px, 4px)`);
 
         // const legendProportional = legend.append("g").style("transform", `translateY(28px)`);
         //
@@ -202,45 +202,43 @@ function render(label) {
             .attr("height", legendSquareWidth)
             .attr("fill", "#0062F1")
             .attr("rx", 4)
-            .attr("x", margin);
+            .attr("x", 0);
 
         legendHighlight.append("text")
             .text(demoLabels[label] + " judge")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", margin + squareWidth + legendMargin)
+            .attr("x", legendSquareWidth + legendMargin)
             .attr("y", (legendSquareWidth) / 2);
 
-        const legendDefault = legend.append("g").style("transform", `translateX(${width / 3}px)`);
+        const legendDefault = legend.append("g").style("transform", `translateX(${margin + legendHighlight.node().getBBox().width}px)`);
 
         legendDefault.append("rect")
             .attr("width", legendSquareWidth)
             .attr("height", legendSquareWidth)
             .attr("fill", "#bbb")
-            .attr("rx", 4)
-            .attr("x", margin);
+            .attr("rx", 4);
 
         legendDefault.append("text")
             .text("Other race/ethnicity")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", margin + squareWidth + legendMargin)
+            .attr("x", legendSquareWidth + legendMargin)
             .attr("y", (legendSquareWidth) / 2);
 
-        const legendUnknown = legend.append("g").style("transform", `translateX(${width / 3 * 2}px)`);
+        const legendUnknown = legend.append("g").style("transform", `translateX(${2 * margin + legendDefault.node().getBBox().width + legendHighlight.node().getBBox().width}px)`);
 
         legendUnknown.append("rect")
             .attr("width", legendSquareWidth)
             .attr("height", legendSquareWidth)
             .attr("fill", "url(#hatch)")
-            .attr("rx", 4)
-            .attr("x", margin);
+            .attr("rx", 4);
 
         legendUnknown.append("text")
             .text("Unknown race/ethnicity")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
-            .attr("x", margin + squareWidth + legendMargin)
+            .attr("x", legendSquareWidth + legendMargin)
             .attr("y", (legendSquareWidth) / 2);
     });
 }
