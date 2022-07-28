@@ -89,7 +89,7 @@ function render(label) {
             .data(Object.keys(labels))
             .enter()
             .append("g")
-            .style("transform", (d, i) => `translate(${margin + i * (singleWidth + margin)}px, 96px)`);
+            .style("transform", (d, i) => `translate(${margin + i * (singleWidth + margin)}px, 128px)`);
 
         containers.append("text")
             .attr("dominant-baseline", "hanging")
@@ -157,38 +157,38 @@ function render(label) {
                 tooltipOrg.style("display", "none");
             });
 
-        containers.append("rect")
-            .attr("width", d => demoPercentages[label] * data.filter(x => x.award === d).length * singleWidth / squaresPerRow)
-            .attr("height", squareWidth + 2)
-            .attr("x", -1)
-            .attr("y", labelHeight - 1)
-            .attr("stroke", "#222")
-            .attr("stroke-width", 3)
-            .attr("fill", "transparent")
-            .attr("rx", 4)
-            .attr("pointer-events", "none");
+        // containers.append("rect")
+        //     .attr("width", d => demoPercentages[label] * data.filter(x => x.award === d).length * singleWidth / squaresPerRow)
+        //     .attr("height", squareWidth + 2)
+        //     .attr("x", -1)
+        //     .attr("y", labelHeight - 1)
+        //     .attr("stroke", "#222")
+        //     .attr("stroke-width", 3)
+        //     .attr("fill", "transparent")
+        //     .attr("rx", 4)
+        //     .attr("pointer-events", "none");
 
         const legend = svg.append("g")
             .style("transform", "translateY(4px)");
 
-        const legendProportional = legend.append("g").style("transform", `translateY(28px)`);
-
-        legendProportional.append("rect")
-            .attr("width", legendSquareWidth - 1.5)
-            .attr("height", legendSquareWidth - 1.5)
-            .attr("stroke", "#222")
-            .attr("stroke-width", 3)
-            .attr("stroke-alignment", "inner")
-            .attr("fill", "transparent")
-            .attr("rx", 4)
-            .attr("x", margin + 0.75);
-
-        legendProportional.append("text")
-            .text(`If proportional to US population (${d3.format(".0%")(demoPercentages[label])})`)
-            .style("opacity", 0.5)
-            .attr("dominant-baseline", "middle")
-            .attr("x", margin + squareWidth + legendMargin)
-            .attr("y", (legendSquareWidth) / 2);
+        // const legendProportional = legend.append("g").style("transform", `translateY(28px)`);
+        //
+        // legendProportional.append("rect")
+        //     .attr("width", legendSquareWidth - 1.5)
+        //     .attr("height", legendSquareWidth - 1.5)
+        //     .attr("stroke", "#222")
+        //     .attr("stroke-width", 3)
+        //     .attr("stroke-alignment", "inner")
+        //     .attr("fill", "transparent")
+        //     .attr("rx", 4)
+        //     .attr("x", margin + 0.75);
+        //
+        // legendProportional.append("text")
+        //     .text(`If proportional to US population (${d3.format(".0%")(demoPercentages[label])})`)
+        //     .style("opacity", 0.5)
+        //     .attr("dominant-baseline", "middle")
+        //     .attr("x", margin + squareWidth + legendMargin)
+        //     .attr("y", (legendSquareWidth) / 2);
 
         const legendHighlight = legend.append("g");
 
@@ -201,6 +201,38 @@ function render(label) {
 
         legendHighlight.append("text")
             .text(demoLabels[label])
+            .style("opacity", 0.5)
+            .attr("dominant-baseline", "middle")
+            .attr("x", margin + squareWidth + legendMargin)
+            .attr("y", (legendSquareWidth) / 2);
+
+        const legendDefault = legend.append("g").style("transform", `translateY(28px)`);
+
+        legendDefault.append("rect")
+            .attr("width", legendSquareWidth)
+            .attr("height", legendSquareWidth)
+            .attr("fill", "#bbb")
+            .attr("rx", 4)
+            .attr("x", margin);
+
+        legendDefault.append("text")
+            .text("Other race/ethnicity")
+            .style("opacity", 0.5)
+            .attr("dominant-baseline", "middle")
+            .attr("x", margin + squareWidth + legendMargin)
+            .attr("y", (legendSquareWidth) / 2);
+
+        const legendUnknown = legend.append("g").style("transform", `translateY(56px)`);
+
+        legendUnknown.append("rect")
+            .attr("width", legendSquareWidth)
+            .attr("height", legendSquareWidth)
+            .attr("fill", "url(#hatch)")
+            .attr("rx", 4)
+            .attr("x", margin);
+
+        legendUnknown.append("text")
+            .text("Unknown race/ethnicity")
             .style("opacity", 0.5)
             .attr("dominant-baseline", "middle")
             .attr("x", margin + squareWidth + legendMargin)
