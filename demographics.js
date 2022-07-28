@@ -6,7 +6,7 @@ const squareMargin = 4;
 const squareWidth = singleWidth / squaresPerRow - squareMargin;
 const labelHeight = 48;
 const legendSquareWidth = 16;
-const legendMargin = 8;
+const legendMargin = 4;
 
 const demoLabels = {
     "asian": "Asian American",
@@ -89,7 +89,7 @@ function render(label) {
             .data(Object.keys(labels))
             .enter()
             .append("g")
-            .style("transform", (d, i) => `translate(${margin + i * (singleWidth + margin)}px, 128px)`);
+            .style("transform", (d, i) => `translate(${margin + i * (singleWidth + margin)}px, 64px)`);
 
         containers.append("text")
             .attr("dominant-baseline", "hanging")
@@ -211,7 +211,7 @@ function render(label) {
             .attr("x", margin + squareWidth + legendMargin)
             .attr("y", (legendSquareWidth) / 2);
 
-        const legendDefault = legend.append("g").style("transform", `translateY(28px)`);
+        const legendDefault = legend.append("g").style("transform", `translateX(${width / 3}px)`);
 
         legendDefault.append("rect")
             .attr("width", legendSquareWidth)
@@ -227,7 +227,7 @@ function render(label) {
             .attr("x", margin + squareWidth + legendMargin)
             .attr("y", (legendSquareWidth) / 2);
 
-        const legendUnknown = legend.append("g").style("transform", `translateY(56px)`);
+        const legendUnknown = legend.append("g").style("transform", `translateX(${width / 3 * 2}px)`);
 
         legendUnknown.append("rect")
             .attr("width", legendSquareWidth)
