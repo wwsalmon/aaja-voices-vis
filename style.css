@@ -19,3 +19,16 @@ body {
 .demographics-heading {
     margin-left: 24px; margin-bottom: 32px;
 }
+
+.demographics-footer {
+    margin-left: 24px;
+    opacity: 0.5;
+    margin-top: 48px;
+    /*padding-top: 24px;*/
+    /*border-top: 1px solid gray;*/
+}
+
+.demographics-footer p {
+    margin: 4px 0;
+    font-size: 12px;
+}

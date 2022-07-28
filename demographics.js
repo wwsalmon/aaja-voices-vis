@@ -84,7 +84,7 @@ function render(label) {
         const tooltipRaceInner = tooltipRace.append("span");
 
         const containers = svg
-            .attr("viewBox", `0 0 ${width} 400`)
+            .attr("viewBox", `0 0 ${width} 250`)
             .style("width", "100%")
             .selectAll("g.awardContainer")
             .data(Object.keys(labels))
