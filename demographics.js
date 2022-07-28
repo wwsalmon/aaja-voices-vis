@@ -42,6 +42,22 @@ const judgeType = {
 function render(label) {
     const svg = d3.select("svg");
 
+    const pattern = svg.append("defs")
+        .append("pattern")
+        .attr("patternTransform", "rotate(45 0 0)")
+        .attr("patternUnits", "userSpaceOnUse")
+        .attr("width", "6")
+        .attr("height", "6")
+        .attr("id", "hatch");
+
+    pattern.append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", 0)
+        .attr("y2", 6)
+        .attr("stroke", "#bbb")
+        .attr("stroke-width", 4);
+
     d3.csv("../judges.csv").then(data => {
         const tooltip = d3.select("body")
             .append("div")
@@ -94,10 +110,10 @@ function render(label) {
             .attr("rx", 4)
             .attr("x", (d, i) => (i % squaresPerRow) * singleWidth / squaresPerRow)
             .attr("y", (d, i) => Math.floor(i / squaresPerRow) * (singleWidth / squaresPerRow) + labelHeight)
-            .attr("fill", d => !!d[label] ? "#0062F1" : (d.responded || d.source) ? "#bbb" : "#dac6c6")
+            .attr("fill", d => !!d[label] ? "#0062F1" : (d.responded || d.source) ? "#bbb" : "url(#hatch)")
             .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("fill", !!d[label] ? "#00378b" : "gray");
+                d3.select(this).style("opacity", 0.5);
 
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
@@ -134,7 +150,7 @@ function render(label) {
                     .style("top", event.pageY + 8 + "px");
             })
             .on("mouseout", function(e, d) {
-                d3.select(this).attr("fill", !!d[label] ? "#0062F1" : (d.responded || d.source) ? "#bbb" : "#dac6c6");
+                d3.select(this).style("opacity", 1)
                 tooltip.style("display", "none");
 
                 tooltipTitle.style("display", "none");
