@@ -14,7 +14,7 @@ const demoLabels = {
     "hispaniclatino": "Latino",
     "black": "Black",
     "nativeamer": "Native American",
-    "mena": "Middle Eastern or North African",
+    "mena": "Middle Eastern",
 };
 
 const demoPercentages = {
