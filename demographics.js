@@ -137,6 +137,12 @@ function render(label) {
             return tooltip.node().offsetHeight;
         }
 
+        function getTooltipLeft(eventLeft) {
+            let left = eventLeft + 8;
+            if (left + 200 > window.innerWidth) left = eventLeft - 200 - 8;
+            return left + "px";
+        }
+
         containers.selectAll("rect.judge")
             .data(d => data.filter(x => x.award === d).sort((a, b) => +(b.responded || !!b.source) - +(a.responded || !!a.source)).sort((a, b) => +b[label] - +a[label]))
             .enter()
@@ -155,14 +161,14 @@ function render(label) {
                 const tooltipHeight = updateTooltip(d);
 
                 tooltip
-                    .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
+                    .style("left", getTooltipLeft(event.pageX))
                     .style("top", Math.min(event.pageY + 8, window.innerHeight - tooltipHeight) + "px");
             })
             .on("mousemove", function(event) {
                 const tooltipHeight = tooltip.node().offsetHeight;
 
                 tooltip
-                    .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
+                    .style("left", getTooltipLeft(event.pageX))
                     .style("top", Math.min(event.pageY + 8, window.innerHeight - tooltipHeight) + "px");
             })
             .on("focus", function(event, d) {
@@ -171,7 +177,7 @@ function render(label) {
                 const tooltipHeight = updateTooltip(d);
 
                 tooltip
-                    .style("left", Math.min(startNode.getBoundingClientRect().x + squareWidth, window.innerWidth - 200) + "px")
+                    .style("left", getTooltipLeft(startNode.getBoundingClientRect().x))
                     .style("top", Math.min(startNode.getBoundingClientRect().y + squareWidth, window.innerHeight - tooltipHeight) + "px");
             })
             .on("blur", function() {
