@@ -35,7 +35,7 @@ const labels = {
 
 const judgeType = {
     "Pulitzer": "Board member",
-    "Peabody": "Board of jurors",
+    "Peabody": "Juror",
     "Livingston": "National judge",
     "Loeb": "Final judge",
 }
