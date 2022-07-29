@@ -27,7 +27,7 @@ const demoPercentages = {
 const pocPercentage = 1 - demoPercentages["white"];
 
 const labels = {
-    "Pulitzer": "Pulitzer Prize",
+    "Pulitzer": "Pulitzer Prizes",
     "Peabody": "Peabody Awards",
     "Livingston": "Livingston Awards",
     "Loeb": "Loeb Awards",
