@@ -102,6 +102,34 @@ function render(label) {
             .attr("y", 20)
             .text(d => judgeType[d]);
 
+        function updateTooltip(d) {
+            tooltip.style("display", "block");
+
+            if (d.title) {
+                tooltipTitle.style("display", "block");
+                tooltipTitleInner.text(d.title);
+            }
+
+            if (d.organization) {
+                tooltipOrg.style("display", "block");
+                tooltipOrgInner.text(d.organization);
+            }
+
+            tooltipNameInner.text(d.name);
+
+            if (!d.responded && !d.source) {
+                tooltipRaceInner.text(`Unknown (${d.declined ? "declined to respond" : "did not respond"})`);
+            } else {
+                let races = [];
+                for (let label of Object.keys(demoLabels)) {
+                    if (d[label]) races.push(demoLabels[label]);
+                }
+                if (!races.length) races.push("White");
+                tooltipRaceInner.text(races.join(", "));
+            }
+            return tooltip.node().offsetHeight;
+        }
+
         containers.selectAll("rect.judge")
             .data(d => data.filter(x => x.award === d).sort((a, b) => +(b.responded || !!b.source) - +(a.responded || !!a.source)).sort((a, b) => +b[label] - +a[label]))
             .enter()
@@ -112,37 +140,12 @@ function render(label) {
             .attr("x", (d, i) => (i % squaresPerRow) * singleWidth / squaresPerRow)
             .attr("y", (d, i) => Math.floor(i / squaresPerRow) * (singleWidth / squaresPerRow) + labelHeight)
             .attr("fill", d => !!d[label] ? "#0062F1" : (d.responded || d.source) ? "#bbb" : "url(#hatch)")
+            .attr("tabindex", 0)
             .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
                 d3.select(this).style("opacity", 0.5);
 
-                tooltip.style("display", "block");
-
-                if (d.title) {
-                    tooltipTitle.style("display", "block");
-                    tooltipTitleInner.text(d.title);
-                }
-
-                if (d.organization) {
-                    tooltipOrg.style("display", "block");
-                    tooltipOrgInner.text(d.organization);
-                }
-
-                tooltipNameInner.text(d.name);
-
-                if (!d.responded && !d.source) {
-                    tooltipRaceInner.text(`Unknown (${d.declined ? "declined to respond" : "did not respond"})`);
-                } else {
-                    let races = [];
-                    for (let label of Object.keys(demoLabels)) {
-                        if (d[label]) races.push(demoLabels[label]);
-                    }
-                    if (!races.length) races.push("White");
-                    let raceText = races.join(", ");
-                    tooltipRaceInner.text(races.join(", "));
-                }
-
-                const tooltipHeight = tooltip.node().offsetHeight;
+                const tooltipHeight = updateTooltip(d);
 
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
@@ -154,6 +157,18 @@ function render(label) {
                 tooltip
                     .style("left", Math.min(event.pageX + 8, window.innerWidth - 200) + "px")
                     .style("top", Math.min(event.pageY + 8, window.innerHeight - tooltipHeight) + "px");
+            })
+            .on("focus", function(event, d) {
+                const startNode = event.path[0];
+
+                const tooltipHeight = updateTooltip(d);
+
+                tooltip
+                    .style("left", Math.min(startNode.getBoundingClientRect().x + squareWidth, window.innerWidth - 200) + "px")
+                    .style("top", Math.min(startNode.getBoundingClientRect().y + squareWidth, window.innerHeight - tooltipHeight) + "px");
+            })
+            .on("blur", function() {
+                tooltip.style("display", "none");
             })
             .on("mouseout", function(e, d) {
                 d3.select(this).style("opacity", 1)
