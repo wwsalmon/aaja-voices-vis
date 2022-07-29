@@ -11,7 +11,7 @@ const legendMargin = 32;
 
 const demoLabels = {
     "asian": "Asian American",
-    "hispaniclatino": "Hispanic or Latino",
+    "hispaniclatino": "Latino",
     "black": "Black",
     "nativeamer": "Native American",
     "mena": "Middle Eastern or North African",
