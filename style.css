@@ -17,11 +17,10 @@ body {
 }
 
 .demographics-heading {
-    margin-left: 24px; margin-bottom: 32px;
+    margin-bottom: 32px;
 }
 
 .demographics-footer {
-    margin-left: 24px;
     opacity: 0.5;
     margin-top: 48px;
     /*padding-top: 24px;*/
