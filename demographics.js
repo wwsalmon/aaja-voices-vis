@@ -139,7 +139,7 @@ function render(label) {
 
         function getTooltipLeft(eventLeft) {
             let left = eventLeft + 8;
-            if (left + 200 > window.innerWidth) left = eventLeft - 200 - 8;
+            if (left + 200 > window.innerWidth) left = eventLeft - 200 - 24;
             return left + "px";
         }
 
