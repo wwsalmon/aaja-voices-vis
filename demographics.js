@@ -13,7 +13,7 @@ const legendRowHeight = 28;
 const windowWidth = window.innerWidth;
 const numPerRow = windowWidth > 500 ? 4 : 2;
 const svgWidth = width / 4 * numPerRow;
-const svgHeight = numPerRow === 4 ? 250 : 536;
+const svgHeight = numPerRow === 4 ? 256 : 536;
 const legendHeight = numPerRow === 4 ? 64 : 128;
 
 const demoLabels = {
@@ -132,7 +132,9 @@ function render(label) {
                     if (d[label]) races.push(demoLabels[label]);
                 }
                 if (!races.length) races.push("White");
-                tooltipRaceInner.text(races.join(", "));
+                let tooltipText = races.join(", ");
+                if (d.responded === "late") tooltipText += " (responded after deadline)"
+                tooltipRaceInner.text(tooltipText);
             }
             return tooltip.node().offsetHeight;
         }
@@ -144,7 +146,7 @@ function render(label) {
         }
 
         containers.selectAll("rect.judge")
-            .data(d => data.filter(x => x.award === d).sort((a, b) => +(b.responded || !!b.source) - +(a.responded || !!a.source)).sort((a, b) => +b[label] - +a[label]))
+            .data(d => data.filter(x => x.award === d).sort((a, b) => +(!!b.responded || !!b.source) - +(!!a.responded || !!a.source)).sort((a, b) => +b[label] - +a[label]))
             .enter()
             .append("rect")
             .attr("width", squareWidth)
