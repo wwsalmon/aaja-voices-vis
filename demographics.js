@@ -89,6 +89,7 @@ function render(label) {
         const tooltipRace = tooltip.append("div").style("margin", "10px 0");
         tooltipRace.append("span").text("Race/ethnicity: ").style("font-weight", 700);
         const tooltipRaceInner = tooltipRace.append("span");
+        const tooltipRaceLate = tooltipRace.append("span").text(" (responded after deadline)").style("color", "red").style("display", "none");
 
         const containers = svg
             .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
@@ -132,9 +133,8 @@ function render(label) {
                     if (d[label]) races.push(demoLabels[label]);
                 }
                 if (!races.length) races.push("White");
-                let tooltipText = races.join(", ");
-                if (d.responded === "late") tooltipText += " (responded after deadline)"
-                tooltipRaceInner.text(tooltipText);
+                tooltipRaceInner.text(races.join(", "));
+                if (d.responded === "late") tooltipRaceLate.style("display", "inline");
             }
             return tooltip.node().offsetHeight;
         }
@@ -160,6 +160,8 @@ function render(label) {
             .on("mouseover", function(event, d) {
                 d3.select(this).style("opacity", 0.5);
 
+                if (d.responded === "late") d3.select(this).attr("stroke", "red").attr("stroke-width", 2);
+
                 const tooltipHeight = updateTooltip(d);
 
                 tooltip
@@ -178,19 +180,25 @@ function render(label) {
 
                 const tooltipHeight = updateTooltip(d);
 
+                if (d.responded === "late") startNode.attr("stroke", "red").attr("stroke-width", 2);
+
                 tooltip
                     .style("left", getTooltipLeft(startNode.getBoundingClientRect().x))
                     .style("top", Math.min(startNode.getBoundingClientRect().y + squareWidth, window.innerHeight - tooltipHeight) + "px");
             })
-            .on("blur", function() {
+            .on("blur", function(event) {
                 tooltip.style("display", "none");
+                tooltipRaceLate.style("display", "none");
+                if (d.responded === "late") event.path[0].attr("stroke-width", 0);
             })
             .on("mouseout", function(e, d) {
                 d3.select(this).style("opacity", 1)
                 tooltip.style("display", "none");
+                if (d.responded === "late") d3.select(this).attr("stroke-width", 0);
 
                 tooltipTitle.style("display", "none");
                 tooltipOrg.style("display", "none");
+                tooltipRaceLate.style("display", "none");
             });
 
         // containers.append("rect")
